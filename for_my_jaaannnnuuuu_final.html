@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Jaaannnnuuuu</title>
+<style>
+  :root{
+    --bg:#080608;
+    --bg2:#12090f;
+    --ink:#f7edf2;
+    --muted:#b9a8b1;
+    --rose:#c88b9f;
+    --rose-soft:#e3b7c5;
+    --line:rgba(227,183,197,.18);
+    --glass:rgba(255,255,255,.045);
+    --shadow:0 28px 80px rgba(0,0,0,.45);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(128,42,75,.15), transparent 32%),
+      radial-gradient(circle at 80% 70%, rgba(128,42,75,.12), transparent 30%),
+      linear-gradient(145deg,var(--bg),var(--bg2) 55%,#070507);
+    color:var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.14;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
+    z-index:5;
+  }
+
+  .page{
+    width:min(900px, calc(100% - 32px));
+    margin:0 auto;
+    position:relative;
+    z-index:1;
+  }
+
+  .hero{
+    min-height:92vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:80px 0 70px;
+  }
+
+  .hero-inner{max-width:720px}
+
+  .eyebrow{
+    color:var(--rose-soft);
+    text-transform:uppercase;
+    letter-spacing:.28em;
+    font-size:.72rem;
+    margin-bottom:28px;
+  }
+
+  h1{
+    font-size:clamp(3rem,8vw,6.6rem);
+    line-height:.92;
+    font-weight:400;
+    margin:0;
+    letter-spacing:-.045em;
+  }
+
+  .hero p{
+    max-width:600px;
+    margin:30px auto 0;
+    color:var(--muted);
+    font-size:clamp(1rem,2vw,1.25rem);
+    line-height:1.85;
+  }
+
+  .heart{
+    width:62px;
+    height:62px;
+    margin:38px auto 34px;
+    border:1px solid var(--line);
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    color:var(--rose-soft);
+    font-size:1.3rem;
+    background:rgba(255,255,255,.025);
+    box-shadow:0 0 45px rgba(190,91,122,.12);
+  }
+
+  button{
+    font:inherit;
+    color:var(--ink);
+    cursor:pointer;
+    border:1px solid rgba(227,183,197,.28);
+    background:rgba(255,255,255,.045);
+    border-radius:999px;
+    padding:15px 25px;
+    min-height:48px;
+    transition:.3s ease;
+  }
+
+  button:hover{
+    background:rgba(227,183,197,.11);
+    border-color:rgba(227,183,197,.55);
+    transform:translateY(-2px);
+  }
+
+  button:focus-visible,
+  [contenteditable="true"]:focus-visible{
+    outline:2px solid var(--rose-soft);
+    outline-offset:4px;
+  }
+
+  .letter-wrap{
+    display:none;
+    padding:30px 0 100px;
+  }
+
+  .letter-wrap.visible{
+    display:block;
+    animation:rise 1s ease both;
+  }
+
+  @keyframes rise{
+    from{opacity:0; transform:translateY(25px)}
+    to{opacity:1; transform:translateY(0)}
+  }
+
+  .letter-card{
+    background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+    border:1px solid var(--line);
+    border-radius:28px;
+    box-shadow:var(--shadow);
+    padding:clamp(28px,6vw,72px);
+  }
+
+  .letter-title{
+    text-align:center;
+    margin-bottom:55px;
+  }
+
+  .letter-title .small{
+    color:var(--rose-soft);
+    text-transform:uppercase;
+    letter-spacing:.22em;
+    font-size:.7rem;
+  }
+
+  .letter-title h2{
+    font-size:clamp(2.2rem,6vw,4.2rem);
+    font-weight:400;
+    line-height:1;
+    margin:18px 0 0;
+  }
+
+  .letter{
+    font-size:clamp(1.04rem,2vw,1.18rem);
+    line-height:2;
+    color:#eee1e7;
+  }
+
+  .letter p{margin:0 0 28px}
+  .letter .pause{
+    text-align:center;
+    color:var(--rose-soft);
+    font-size:1.45rem;
+    line-height:1.7;
+    margin:48px 0;
+  }
+
+  .letter .emphasis{
+    border-left:2px solid var(--rose);
+    padding:18px 0 18px 24px;
+    margin:44px 0;
+    color:#f5dbe4;
+    font-size:clamp(1.25rem,2.6vw,1.65rem);
+    line-height:1.65;
+    font-style:italic;
+  }
+
+  .letter .final{
+    text-align:center;
+    margin-top:65px;
+    padding-top:45px;
+    border-top:1px solid var(--line);
+  }
+
+  .letter .final strong{
+    display:block;
+    color:var(--rose-soft);
+    font-size:1.6rem;
+    margin-top:18px;
+  }
+
+  .transition{
+    text-align:center;
+    padding:90px 0;
+    display:none;
+  }
+
+  .transition.visible{
+    display:block;
+    animation:rise 1s ease both;
+  }
+
+  .transition .mark{
+    color:var(--rose-soft);
+    font-size:1.4rem;
+    margin-bottom:28px;
+  }
+
+  .transition h2{
+    font-weight:400;
+    font-size:clamp(2rem,5vw,3.8rem);
+    margin:0 auto 22px;
+  }
+
+  .transition p{
+    color:var(--muted);
+    max-width:590px;
+    margin:0 auto 30px;
+    line-height:1.8;
+  }
+
+  .private{
+    display:none;
+    padding:20px 0 120px;
+  }
+
+  .private.visible{
+    display:block;
+    animation:rise 1s ease both;
+  }
+
+  .private-card{
+    background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+    border:1px solid var(--line);
+    border-radius:28px;
+    box-shadow:var(--shadow);
+    padding:clamp(28px,6vw,72px);
+  }
+
+  .private-head{text-align:center;margin-bottom:40px}
+  .private-head .small{
+    color:var(--rose-soft);
+    text-transform:uppercase;
+    letter-spacing:.22em;
+    font-size:.7rem;
+  }
+  .private-head h2{
+    font-size:clamp(2.1rem,5vw,3.7rem);
+    font-weight:400;
+    margin:18px 0 16px;
+  }
+  .private-head p{
+    color:var(--muted);
+    line-height:1.8;
+    max-width:650px;
+    margin:auto;
+  }
+
+  .private-note{
+    text-align:center;
+    color:rgba(185,168,177,.65);
+    font-size:.82rem;
+    margin-top:20px;
+  }
+
+  .footer{
+    text-align:center;
+    color:rgba(185,168,177,.6);
+    font-size:.8rem;
+    letter-spacing:.08em;
+    padding:0 0 45px;
+  }
+
+  .petal{
+    position:fixed;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:rgba(227,183,197,.45);
+    pointer-events:none;
+    z-index:0;
+    animation:float 12s linear infinite;
+  }
+
+  @keyframes float{
+    0%{transform:translate3d(0,10vh,0);opacity:0}
+    12%{opacity:.7}
+    80%{opacity:.25}
+    100%{transform:translate3d(35px,-110vh,0);opacity:0}
+  }
+
+  @media (max-width:600px){
+    .page{width:min(100% - 22px,900px)}
+    .hero{min-height:82vh;padding:60px 0}
+    .letter-card,.private-card{border-radius:22px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{
+      animation-duration:.01ms!important;
+      animation-iteration-count:1!important;
+      transition-duration:.01ms!important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<main class="page" id="lovePage">
+
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">A letter for my favourite girl</div>
+      <div class="heart" aria-hidden="true">♡</div>
+      <h1>For My<br>Jaaannnnuuuu</h1>
+      <p>
+        There are some things I could tell you every day and still never
+        manage to say enough.
+      </p>
+      <button type="button" id="openLetter">Open my letter</button>
+    </div>
+  </section>
+
+  <section class="letter-wrap" id="letterSection" aria-hidden="true">
+    <article class="letter-card">
+      <header class="letter-title">
+        <div class="small">Letter One · Her</div>
+        <h2>The Way I See You</h2>
+      </header>
+
+      <div class="letter">
+        <p>Jaaannnnuuuu,</p>
+
+        <p>
+          I don't think I have ever properly told you what you look like from
+          my side of the world.
+        </p>
+
+        <p>
+          Because when I look at you, I don't just see a pretty girl.
+        </p>
+
+        <p>
+          I see those bright, nasheeli eyes of yours — the kind that somehow
+          shine brighter than stars and still manage to make me forget what I
+          was saying. I see your open hair, your cute little smile, the way
+          your face changes with every tiny expression. I notice your slim
+          fingers, the ones I always want to hold. I notice your nails. Your
+          eyelids. Your little smiles that probably mean nothing to you but
+          somehow stay in my head.
+        </p>
+
+        <p>
+          And yes, I notice that slim waist too. I'm still your boy, okay?
+          Let me have my moments. :(
+        </p>
+
+        <p>
+          I notice you in that pink glittery dress. I notice the little things
+          you probably never imagine I would remember.
+        </p>
+
+        <p>Because that's the thing about you.</p>
+
+        <p class="pause">I notice you.<br>I notice all of you.</p>
+
+        <p>
+          And somehow, the more I notice, the more adorable you become to me.
+        </p>
+
+        <p>
+          You have this way of talking about anything and everything, and I
+          genuinely don't think I could ever get tired of listening to you.
+          You can take the most random thought in your head and somehow make
+          me want to sit there and hear the entire thing.
+        </p>
+
+        <p>And then there's what you do to me.</p>
+
+        <p>
+          You make me ridiculously happy. You turn me into this cute little
+          person who suddenly forgets how to act normal because his favourite
+          girl is talking to him. Around you, I become almost like a kid again
+          — happy, excited, clingy, silly, loving, all at once.
+        </p>
+
+        <p>
+          One message from you and suddenly I'm not the same person I was a
+          few seconds ago.
+        </p>
+
+        <p class="pause">
+          I become a cute person in love with you.<br>
+          And honestly?<br>
+          I love that version of me.
+        </p>
+
+        <p>Because you brought him out.</p>
+
+        <p>
+          You made me softer. You made me more expressive. You made me
+          understand that love isn't just about saying <em>I love you</em>.
+          Love is patience. Love is reassurance. Love is affirmation. Love is
+          staying. Love is trying to understand someone even when they're
+          difficult to understand.
+        </p>
+
+        <p>
+          You taught me that love can feel like warmth.
+        </p>
+
+        <p class="pause">Like a cold breeze on a warm day.<br>Like finally being able to breathe.</p>
+
+        <p>And you somehow became that comfort for me.</p>
+
+        <p>
+          There are days when I don't even feel like I can call them bad
+          anymore because somehow you're there.
+        </p>
+
+        <p>
+          Especially when you come forward with those comfy little texts,
+          telling me to come close, that you'll hold me in your arms, that I
+          can bury my face into your neck and sleep.
+        </p>
+
+        <p>Jaaannnnuuuu...</p>
+
+        <p>How am I supposed to explain what that does to me?</p>
+
+        <p>
+          Everything just goes quiet. The bad things disappear. And somehow I
+          can sleep like a baby because in my head, I'm already there — in
+          your arms, being held by you.
+        </p>
+
+        <p>That's what you feel like to me.</p>
+
+        <p class="pause">Comfort.<br>Home isn't always a place.<br>Sometimes it's a person.</p>
+
+        <p>
+          And sometimes that person feels like she's holding your face between
+          her hands, cupping it gently, telling you without even saying
+          anything that you're okay.
+        </p>
+
+        <p>That's you.</p>
+
+        <p>
+          You listen. You try to understand. You stay. And when I cry, you
+          don't make me feel like I have to hide it. You comfort me. You make
+          sure I don't have to sit alone with whatever is hurting me.
+        </p>
+
+        <p>
+          I don't think you understand how much that changed me.
+        </p>
+
+        <p>
+          You made me realize that I can be open. I can be expressive. I can
+          let myself be seen.
+        </p>
+
+        <p>
+          And if you ever wonder why there is a softer version of me now, why
+          I love so loudly, why I write those huge messages, why I say things
+          I probably would've kept inside before...
+        </p>
+
+        <p>Look at yourself.</p>
+
+        <p>It's you.</p>
+
+        <p>You did that.</p>
+
+        <p>
+          And there's something else I wish you could see. I wish, just for one
+          minute, you could borrow my eyes and look at yourself through them.
+        </p>
+
+        <p class="emphasis">
+          Because if you could, you'd probably see a goddess.<br><br>
+          And yes, I'm fully aware how dramatic that sounds.
+        </p>
+
+        <p>
+          But if I had an aarti ki thaali in my hands, I'd probably be
+          standing there like a complete idiot, bending down to take your
+          blessings.
+        </p>
+
+        <p>
+          Because from my eyes, you're beautiful. You're pretty. You're lovely.
+          You're adorable. You're cute. You're all of those things at once.
+        </p>
+
+        <p>
+          And somehow, even after knowing you this much, I still catch myself
+          thinking:
+        </p>
+
+        <p class="pause"><em>How the hell did this girl become this beautiful to me?</em></p>
+
+        <p>
+          Maybe it's because beauty isn't just your face anymore.
+        </p>
+
+        <p>
+          It's your voice. Your laugh. Your smile. Your expressions. The way
+          you talk. The way you care. The way you try. The way you make me
+          feel.
+        </p>
+
+        <p>
+          Even the stupid little things we do.
+        </p>
+
+        <p>
+          Like our peekaboo on video calls — hiding our faces inside the
+          blanket, finding each other again, kissing the screen, and then
+          looking at each other with those stupidly happy smiles.
+        </p>
+
+        <p>
+          Those moments are so small. But they're ours. And I don't think I'd
+          trade those little moments for anything.
+        </p>
+
+        <p>
+          Because when I think about you being <em>my person</em>, there isn't
+          one single moment I can point to.
+        </p>
+
+        <p class="pause">
+          It's every time.
+        </p>
+
+        <p>
+          Every time I talk to you and my heart goes, <em>yeah... this is my
+          type of person.</em>
+        </p>
+
+        <p>
+          Every time I see you and something inside me screams,
+          <em>you are mine.</em>
+        </p>
+
+        <p>
+          Not mine in the sense of owning you. Never that. You're your own
+          person, and I love you for exactly who you are.
+        </p>
+
+        <p>
+          I mean mine in the way my heart recognizes you.
+        </p>
+
+        <p class="pause">My girl.<br>My person.<br>The one I want to keep choosing.</p>
+
+        <p>
+          And if you're hurting, I don't want to fix you with some perfect
+          sentence. I just want to be there.
+        </p>
+
+        <p>
+          I want to pull you into my arms and hold you for a while without
+          needing to say anything. Rub your back. Kiss your cheeks. Kiss your
+          forehead. Let our noses touch and rub against each other like
+          idiots. Let you wipe your nose on my T-shirt and then let me use the
+          clean side to wipe your face.
+        </p>
+
+        <p>
+          Because loving you, to me, isn't only about the beautiful moments.
+          It's also about wanting to be there for the messy ones. The crying
+          ones. The tired ones. The random ones. The <em>I don't know what's
+          wrong with me today</em> ones.
+        </p>
+
+        <p>I want all of it.</p>
+        <p>I don't want only the pretty parts of you.</p>
+
+        <p class="pause">I want <em>you</em>.<br>All of you.</p>
+
+        <p>
+          And I'm grateful for something incredibly simple. I'm grateful that
+          you exist in my life.
+        </p>
+
+        <p>
+          That's it. Just you being here. You living in my heart and my mind
+          rentfereee.
+        </p>
+
+        <p>
+          And somehow, without even trying, you made your way into the deepest
+          room in my heart.
+        </p>
+
+        <p>Actually...</p>
+
+        <p class="pause">Forget the room.<br>You somehow got the whole damn heart.</p>
+
+        <p>And now it knows only you, jaaannnnuuuu.</p>
+
+        <p>
+          Your voice. Your texts. Your presence. Your touch. Your random
+          conversations. Everything.
+        </p>
+
+        <p>
+          I miss everything when you're not around. And I don't think I
+          realized how much one person could become part of another person's
+          everyday existence until you became part of mine.
+        </p>
+
+        <p>
+          You changed me without asking me to change. You made me a loving
+          person. You made me understand that being vulnerable isn't weakness.
+          You made me want to express what I feel instead of hiding it.
+        </p>
+
+        <p>
+          And the funniest part? We have this innocent kind of love that
+          somehow still feels so passionate.
+        </p>
+
+        <p>
+          We care about each other. We make each other feel things. I never
+          expected my voice to mean so much to someone. I never expected my
+          huge messages to actually hold meaning in someone's heart.
+        </p>
+
+        <p>
+          But then I saw your reactions. I heard your laugh. I saw your smile.
+          And every time, my heart just...
+        </p>
+
+        <p class="pause">swayyy.</p>
+
+        <p>
+          You have no idea what your laugh does to me.
+        </p>
+
+        <p>
+          Or maybe you do. Maybe that's why you keep doing it. :(
+        </p>
+
+        <p>
+          And if I'm being completely honest with you, there is one thing that
+          scares me more than I usually know how to admit.
+        </p>
+
+        <p class="emphasis">
+          I'm scared of losing you.<br>
+          If I lose you, I'll not be able to love myself again.
+        </p>
+
+        <p>
+          That's how deeply you've become part of me. And maybe that's
+          terrifying. But it's also the most honest thing I can give you.
+        </p>
+
+        <p>
+          I don't want some perfect version of our future. I don't need some
+          huge cinematic scene.
+        </p>
+
+        <p>I just want us.</p>
+
+        <p>
+          Years from now, I want you to still be calling me by the same stupid
+          pet names. I want us to still have our random conversations about
+          absolutely everything. I want us to still flirt. Still send each
+          other ridiculous huge paragraphs. Still make each other laugh. Still
+          comfort each other. Still be that safe place for one another.
+        </p>
+
+        <p>
+          Still be those two idiots hiding inside a blanket on a video call
+          and kissing a screen.
+        </p>
+
+        <p>I want the little things to survive.</p>
+
+        <p class="pause">I want <em>us</em> to survive inside the little things.</p>
+
+        <p>
+          And if I ever get the chance to sit in front of you, hold you around
+          your waist, let a few minutes pass without either of us needing to
+          say anything...
+        </p>
+
+        <p>
+          I'd look at you. I'd hold your face in my hands. I'd cup your
+          cheeks. I'd look into those nasheeli eyes of yours.
+        </p>
+
+        <p>
+          And I'd probably forget half the beautiful things I planned to say.
+        </p>
+
+        <p>So I'd just tell you the simplest thing.</p>
+
+        <p class="pause">
+          I love you.<br>
+          I want to be with you.<br>
+          I want to keep loving you.<br>
+          I want to keep expressing it.<br>
+          I want to keep choosing you.<br>
+          Again and again.
+        </p>
+
+        <p>
+          And I'd probably look at you and say the thing my heart has been
+          screaming for so long anyway—
+        </p>
+
+        <p class="emphasis">you are my girl.</p>
+
+        <p>
+          My favourite girl.<br>
+          My comfort.<br>
+          My soft place.<br>
+          My chaos.<br>
+          My happiness.<br>
+          My jaaannnnuuuu.
+        </p>
+
+        <p>
+          And if I had to explain everything you are to me in one sentence...
+          I don't think I could.
+        </p>
+
+        <p>
+          Because you're not just one feeling.
+        </p>
+
+        <p class="pause">You're every emotion.</p>
+
+        <p>
+          And somehow, I never get tired of feeling any of them when they're
+          with you.
+        </p>
+
+        <p>
+          So stay exactly as you are. Keep talking about everything. Keep
+          smiling those little smiles. Keep hiding under that blanket during
+          our stupid peekaboo. Keep being the girl who makes me forget how to
+          be anything except a boy hopelessly in love with his favourite girl.
+        </p>
+
+        <p>
+          And let me keep being the idiot who notices your nails, your eyelids,
+          your smile, your hair, your eyes, your little expressions...
+        </p>
+
+        <p>
+          and somehow still finds another reason to fall for you tomorrow.
+        </p>
+
+        <div class="final">
+          I love you, jaaannnnuuuu.
+          <strong>More openly than I knew how to love before you.</strong>
+          <strong>More softly than I knew I could.</strong>
+          <strong>And probably much more stupidly than I'll ever admit.</strong>
+          <p style="margin-top:28px">
+            But that's okay.<br>
+            Because you're you.<br>
+            And I'm yours.<br>
+            And somewhere along the way...<br>
+            my heart decided it was yours too.
+          </p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="transition" id="transition" aria-hidden="true">
+    <div class="mark">♡</div>
+    <h2>And then there are the things...</h2>
+    <p>
+      Some things don't belong in the same letter. Some things are too
+      private, too personal, too completely ours.
+    </p>
+    <button type="button" id="openPrivate">Open what belongs only to us</button>
+  </section>
+
+  <section class="private" id="privateSection" aria-hidden="true">
+    <div class="private-card">
+      <header class="private-head">
+        <div class="small">Letter Two · Us</div>
+        <h2>What Belongs Only to Us</h2>
+        <p>
+          This page is magically special.
+        </p>
+      </header>
+
+      <div class="letter" style="text-align:center;">
+        <p>Heyyy</p>
+      </div>
+      <div class="letter">
+        <p>Moving closer each step looking in youy beautiufl eyes and slowly looking at your lips, you smile I smile you start taking a step back till you reach the wall.</p>
+
+        <p>I keep my hands at the wall looking at you leaning in closer with our chest pounding, till we share the same breath.</p>
+
+        <p>I tuck your hair behind your ear hold your face with with one hand my thumb on your cheeks and rest of my fingers behind your ears, my other hand seaching for your hand hold it, bring it up kiss the back of your hand holding your fingers.</p>
+
+        <p>Hpoing the moment itself screams saying <em>I Love You</em> loud yet soft</p>
+
+        <p>I kiss your cheeks trying to have control over my heartbeat, adore you from close, and you get shy, so adorable which makes me smile.</p>
+
+        <p>I then hold your face softly cupping it place a soft kiss on your lips, uff the lips I hope we can maintain the eye contact.</p>
+
+        <p>I take a mintue to live the moment adoring you and watching my reflecton in your bright eyes. As the time passes I lean to kiss you locking your lips between mine solfly shifting from yous upper lips to the lower lips exchanging breaths slowly gettin intense as we both give in, our eyes closed and tasting each other till we run out of breath.</p>
+
+        <p>Then we take a momnet and it gets uncontrollable kissing deep without hesitating grabbing each other, my hand searches for your waist to grab, you grip my collar, from your waist my hand starts exploring your body reaching to your boob grabbing it to lettin my hands go down grabbing and squeezing your ass.</p>
+
+        <p>Lift you kissing put you down in bed as I slowly undress you removing your top kissing your neck, taking off your bra as I see your two magic globes, come up start kissing your neck and lick it, you find my warm heavy breaths over your neck making you feel aroused, I go down kissing and sucking over your skin from your chest to your boob, grabbing it softly and sucking on it, gently bite yout nipples pull it and kiss your cleavage. Play around your boob for a while till you say babyyy i need moreeee. </p>
+
+        <p>Maybe then I pull my cock out place it over your cleavage, I see you have a perefct cleavage to place my cock there, you grab your boob and rub my cock between it for a while till it starts dripping.</p>
+
+        <p>I come taking my cock near you mouth apply my pre cum over your lips, slap your face with my cock, rub my balls over your face and your grab my cock kiss over my tip, and let you take it in your mouth making it go in and out touching your throat at times, you suck on it and lick it like your favourite lollipop, play wih it make me reach my peak, then I ask you to pull out your tongue and open your mouth looking up. I shower your face with my cum letting a few shots get in your mouth and a few over your face.</p>
+
+        <p>Then I go down on you remove your pantie sniff it before tossing it away, kiss your inner thighs, bite on it and you crush my head between your thighs. I will blow air over your dripping pussy making you even more needy so that you scream for me to eat your pussy.</p>
+
+        <p>I then start slowly rubbing your clit and touching the outer walls of your pussy, let your dripping pussy make my fingers wet, I lick my finger and start gently licking your pulpy pussy. Gently biting your outer wall and pressing my toungue over your pussy hard trying to lick it all, uff your salty sweet pussy that will make me high enough to devour and feast over it, pushing my tongue inside it and suck over it let my tongue and my fingers explore your pussy from inside turn by turn and your grip my hair and squeeze my head.</p>
+
+        <p>Slowly the tension builds I feel your walls contracting and start rubbing your pussy hard till you start shivering and quench my thirst with a mouthful of your cum and yet I dont stop till I make you quiver.</p>
+
+        <p class="emphasis">
+          Your blissful moan echoes,<br><br>
+          And yes, that is what I want.
+        </p>
+
+        <p>I come on top kiss you while my hard cock rubs against your belly, I'll make you grab it and you guide my cock to the right hole, make sure you do it... you know I can get lost sometimes.</p>
+
+        <p>Sliding it in your wet pussy while kissing yous lips and our nose rubs against each other. A soft moan escapes your mouth as it goes inside and your hands touching my chest and shoulders. I start thrusting gently letting it slip deep inside when it reaches the deepest place, I hold you chin look in your eyes and kiss you hard start thusting really hard pounding your pussy make you feel like I'll destroy it if I keep going.</p>
+
+        <p>You ask me to slow down and yes I slow down cause I want to do it that way, then we switch places I make you come on top one me and you start riding slowly. I grab your hips and make you move taking it in and out, then start making you bounce on my cock, my big fat cock making your eyes roll as you bounce.</p>
+
+        <p>My eyes catches your boobs jiggling, I grab it come closer and start sucking it and you go back oe moving your hips to take it in and out, you grab my hair dig your face in my neck and bite it as it gets really sensual for my dick to in your pussy and your boobs getting sucked you keep riding while I grab your hips and ket it move, Slowly we reach our peak and cum holding each other. We stay there in that position for a while till we catch our breath.</p>
+
+        <p>I then make you lay down in bed, while I wipe your pussy dripping with my cum and let you lick it off my cock. Maybe we both smile while doing it, I come on top put my balls in your mouth, you suck it kiss it for a while till I am not satisfied. The tension starts building again, you feel my cock getting hard over your nose as you suck my balls.</p>
+
+        <p>I turn you around and lay donw on your back, I keep my half hard cock between you ass while I grab you from behind, grabbing your both boob and kissing you behind your neck. And ask you gently "So you ready for the wrong hole Babyyy?" and you sayy noooo...</p>
+
+        <p>Then I make you bend on all four grab your hair warpping it around my knuckle, pull your hair making you head rise backwards and ask you again "Where do you want my cock?" and you say "In my pussy dadddyyy" </p>
+
+        <p>I slide my cock inside grabbing you hair pulling it back, your back arched up perfectly for me to fuck your pussy again. I start with slow thrusts building the rythm, start pounding your pussy hard, you scream and moan sometimes your head being pulled back and sometimes your face digging in the pillow with muffled moans. I fuck you so rough then climb over you fucking and say it in your ears "This is what you get for denying your ass babygurlll". I keep fucking you hard and rough for a while.</p>
+
+        <p>Then I turn you around keep a pillow at your back kiss you being on top of you and slide it back in. Grab you neck and thrust my cock in and out for a while. Then lipf both your legs and start sucking your toes and kiss you feet as I slow down with each thrusts and oh don't look at me with those lovely eyes (I mean yes look at me maintain the eye contact when I kiss your feet and suck your toes) nothing's more intimate then having eye contact while fucking. Slowly then I cum inside your pussy.</p>
+
+        <p>Then you pull me beisde you grab me hold me come on top of me, keep your head on my chest and I hold you in my arms, softly say you <p class="pause">I Loveee Youuuuu</p>a hundred times, sometimes kisssig your forehead, sometimes kissigg your hand, sometimes kissig your cheeks, sometimes kissing on top of you head, and a few more times when we kiss again slow and soft.</p>
+
+        <p>Maybe we share something about what we liked while fucking or maybe we talk something else all while being in each other arms. I would complain about the bites on my shoulder and scratches over my back and you kiss me and ask "Isn't is what you wanted?" and I say yes.</p>
+
+        <p>We both melt in each other arms pulling each other closer skin to skin, under the sheets.</p>
+
+        <div class="final">
+          Hope you find my touch warmer than everything.
+          <strong>Warmer than the sheets.</strong>
+          <strong>Softer than the pillow.</strong>
+          <strong>More cozy that the sunset.</strong>
+          <p style="margin-top:28px">
+            Your Home Jaannuuu<br>
+            Your Sid<br>
+            Your Pandaaa<br>
+            You are mine...<br>
+            My Patli Kamar<br>
+            And I'm yours too.
+          </p>
+
+
+      </div> 
+
+      
+    </div>
+  </section>
+
+  <footer class="footer">
+    made for one girl, by one very lovestruck idiot ♡
+  </footer>
+
+</main>
+
+<script>
+(() => {
+  const openLetter = document.getElementById("openLetter");
+  const letterSection = document.getElementById("letterSection");
+  const transition = document.getElementById("transition");
+  const openPrivate = document.getElementById("openPrivate");
+  const privateSection = document.getElementById("privateSection");
+
+  function reveal(section) {
+    section.classList.add("visible");
+    section.setAttribute("aria-hidden", "false");
+    setTimeout(() => section.scrollIntoView({behavior:"smooth", block:"start"}), 80);
+  }
+
+  openLetter.addEventListener("click", () => {
+    reveal(letterSection);
+    setTimeout(() => reveal(transition), 350);
+  });
+
+  openPrivate.addEventListener("click", () => {
+    reveal(privateSection);
+
+  });
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduceMotion) {
+    for (let i = 0; i < 16; i++) {
+      const p = document.createElement("span");
+      p.className = "petal";
+      p.style.left = Math.random() * 100 + "vw";
+      p.style.animationDelay = (Math.random() * 12) + "s";
+      p.style.animationDuration = (9 + Math.random() * 8) + "s";
+      p.style.width = p.style.height = (2 + Math.random() * 4) + "px";
+      document.body.appendChild(p);
+    }
+  }
+})();
+</script>
+</body>
+</html>
